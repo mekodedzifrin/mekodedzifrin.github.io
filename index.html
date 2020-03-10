@@ -9,7 +9,26 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    #content {
+      display: flex;
+      flex-direction: row;
+    }
 
+    .list-group-horizontal{
+      flex-wrap: wrap;
+    }
+
+    .list-group-horizontal .list-group-item{
+      width: auto;
+    }
+
+    .list-group-horizontal .list-group-item.active {
+      margin-top: 0;
+      border: 4px solid;
+      border-color: #007bff;
+    }
+  </style>
   <title>Hello, world!</title>
 </head>
 
@@ -17,6 +36,7 @@
   <div id='content'>
     <ul id='chats'></ul>
     <div id='members'></div>
+    <div id='inviteTo'></div>
   </div>
 
 
