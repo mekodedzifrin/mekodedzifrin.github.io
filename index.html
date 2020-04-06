@@ -12,7 +12,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
       #chats{
-        width:100%;
+        min-width: 220px;
       }
       #content {
         display: flex;
@@ -55,7 +55,7 @@ li a {
 }
 
 li a:hover {
-  background-color: #111;
+  /* background-color: #111; */
 }
 	body {background-color: lightBlue;
 	}
@@ -97,6 +97,15 @@ li a:hover {
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#"><button id="clearBots">מחק בוטים</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><button id="clearAdmins" disabled>מחק אדמינים</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><button id="clearErrors" disabled>מחק שגיות</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><button id="clearOk" disabled>מחק OK</button></a>
     </li>
   </ul>
   <ul class="nav ml-5 justify-content-center">
