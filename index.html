@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,63 +10,104 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      #chats{
+        width:100%;
+      }
+      #content {
+        display: flex;
+        flex-direction: row;
+      }
+  
+      .list-group-horizontal {
+        flex-wrap: wrap;
+      }
+  
+      .list-group-horizontal .list-group-item {
+        width: auto;
+      }
+  
+      .list-group-horizontal .list-group-item.active {
+        margin-top: 0;
+        border: 4px solid;
+        border-color: #007bff;
+      }
+    </style>
   <style>
-    #content {
-      display: flex;
-      flex-direction: row;
-    }
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
-    .list-group-horizontal {
-      flex-wrap: wrap;
-    }
+li {
+  float: left;
+}
 
-    .list-group-horizontal .list-group-item {
-      width: auto;
-    }
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-    .list-group-horizontal .list-group-item.active {
-      margin-top: 0;
-      border: 4px solid;
-      border-color: #007bff;
-    }
+li a:hover {
+  background-color: #111;
+}
+	body {background-color: lightBlue;
+	}
+	
+
   </style>
   <script>
     var databases=[];
     indexedDB.databases().then(r => databases=r);
   </script>
-  <title>tt</title>
+  <title>הוספת משתמשים</title>
 </head>
 
 <body>
-  <ul class="nav ml-5">
+<div class="text-center">
+	<h1>הוספת משתמשים לקבוצות טלגרם</h1>
+	<h3>התוכנה היחידה בעברית ללא צורך בהתקנה</h3>
+</div>
+<ul class="nav ml-5 justify-content-center">
+  <li class="nav-item">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      הוסף מספר
+    </button>
+  </li>
+  <li>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      כניסה
+    </button>
+  </li>
+</ul>
+  <ul class="nav ml-5 justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="#"><input type="checkbox" id="recentlyFilter">Recently</a>
+      <a class="nav-link" href="#"><button id="clearButton">ניקוי</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><input type="checkbox" id="onlineFilter">ONLINE</a>
+      <a class="nav-link" href="#"><button id="selectFirst50">בחר את ה50 הראשונים</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearButton">CLEAR</button></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><button id="selectFirst50">SELECT FIRST 50</button></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearBots">clear Bots</button></a>
-    </li>
-    <li class="nav-item">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        ADD NUMBER
-      </button>
-    </li>
-    <li>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-        aria-expanded="false" aria-controls="collapseExample">
-        Login
-      </button>
+      <a class="nav-link" href="#"><button id="clearBots">מחק בוטים</button></a>
     </li>
   </ul>
+  <ul class="nav ml-5 justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#"><input type="checkbox" id="recentlyFilter">נראה לאחרונה</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"><input type="checkbox" id="onlineFilter">מחובר</a>
+    </li>
+  </ul>
+  
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -78,26 +120,26 @@
         </button>
       </div> -->
         <div class="modal-body">
-          <input class="form-control" placeholder="number" type="text" id="newNumber">
-          <input class="form-control" placeholder="code" type="text" id="newCode" readonly>
-          <input class="form-control" placeholder="password" type="password" id="newPassword" readonly>
+          <input class="form-control" placeholder="מספר טלפון עם+קוד מדינה" type="text" id="newNumber">
+          <input class="form-control" placeholder="קוד" type="text" id="newCode" readonly>
+          <input class="form-control" placeholder="סיסמא דו שלבי" type="password" id="newPassword" readonly>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="addNewNumber">ADD</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
+          <button type="button" class="btn btn-primary" id="addNewNumber">הוסף</button>
         </div>
       </div>
     </div>
   </div>
   <div class="collapse" id="collapseExample">
     <div id="loginForm">
-      <input class="form-control" placeholder="number" type="text" id="mainNumber">
-      <input class="form-control" placeholder="code" type="text" id="mainCode" readonly>
-      <input class="form-control" placeholder="password" type="password" id="mainPassword" readonly>
+      <input class="form-control" placeholder="מספר טלפון עם+קוד מדינה" type="text" id="mainNumber">
+      <input class="form-control" placeholder="קוד" type="text" id="mainCode" readonly>
+      <input class="form-control" placeholder="סיסמא דו שלבי" type="password" id="mainPassword" readonly>
       <button type="button" class="btn btn-primary" id="mainLoginButton">Login</button>
     </div>
   </div>
-  <div class="collapse" id="instanceList">
+  <div class="collapse d-flex justify-content-center" id="instanceList">
     
   </div>
   <div id='content'>
