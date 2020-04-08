@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-      #chats{
+      #chats,#inviteTo>.list-group-item{
+        max-width: 100%;
         min-width: 220px;
       }
       #content {
@@ -70,6 +71,9 @@ li a:hover {
 </head>
 
 <body>
+<div id="statsDebug">
+
+</div>
 <div class="text-center">
 	<h1>הוספת משתמשים לקבוצות טלגרם</h1>
 	<h3>התוכנה היחידה בעברית ללא צורך בהתקנה</h3>
@@ -90,30 +94,30 @@ li a:hover {
 </ul>
   <ul class="nav ml-5 justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearButton">ניקוי</button></a>
+      <a class="nav-link" href="#content"><button id="clearButton">ניקוי</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="selectFirst50">בחר את ה50 הראשונים</button></a>
+      <a class="nav-link" href="#content"><button id="selectFirst50">בחר את ה50 הראשונים</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearBots">מחק בוטים</button></a>
+      <a class="nav-link" href="#content"><button id="clearBots">מחק בוטים</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearAdmins">מחק אדמינים</button></a>
+      <a class="nav-link" href="#content"><button id="clearAdmins">מחק אדמינים</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearErrors">מחק שגיות</button></a>
+      <a class="nav-link" href="#content"><button id="clearErrors">מחק שגיאות</button></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><button id="clearOk">מחק OK</button></a>
+      <a class="nav-link" href="#content"><button id="clearOk">מחק OK</button></a>
     </li>
   </ul>
   <ul class="nav ml-5 justify-content-center">
     <li class="nav-item">
-      <a class="nav-link" href="#"><input type="checkbox" id="recentlyFilter">נראה לאחרונה</a>
+      <a class="nav-link" href="#content"><input type="checkbox" id="recentlyFilter">נראה לאחרונה</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><input type="checkbox" id="onlineFilter">מחובר</a>
+      <a class="nav-link" href="#content"><input type="checkbox" id="onlineFilter">מחובר</a>
     </li>
   </ul>
   
