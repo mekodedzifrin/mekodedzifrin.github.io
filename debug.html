@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      #chats,#inviteTo>.list-group-item{
+        max-width: 100%;
+        min-width: 220px;
+      }
+
+      #inviteTo{
+        width:250px;
+      }
+      #content {
+        display: flex;
+        flex-direction: row;
+      }
+      #members{
+        width:100%;
+      }
+      .list-group-horizontal {
+        flex-wrap: wrap;
+      }
+  
+      .list-group-horizontal .list-group-item {
+        width: auto;
+      }
+  
+      .list-group-horizontal .list-group-item.active {
+        margin-top: 0;
+        border: 4px solid;
+        border-color: #007bff;
+      }
+    </style>
+  <style>
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  /* background-color: #111; */
+}
+	body {background-color: lightBlue;
+	}
+	
+
+  </style>
+  <script>
+    var databases=[];
+    indexedDB.databases().then(r => databases=r);
+  </script>
+
+  <title>הוספת משתמשים</title>
+</head>
+
+<body>
+<div id="statsDebug">
+
+</div>
+<div class="text-center">
+	<h1>הוספת משתמשים לקבוצות טלגרם</h1>
+	<h3>התוכנה היחידה בעברית ללא צורך בהתקנה</h3>
+</div>
+<ul class="nav ml-5 justify-content-center">
+  <li class="nav-item">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" id="addInstanceBtn" data-target="#addInstance">
+      הוסף מספר
+    </button>
+  </li>
+  <li>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+      aria-expanded="false" aria-controls="collapseExample">
+      כניסה
+    </button>
+  </li>
+</ul>
+  <ul class="nav ml-5 justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="clearButton">ניקוי</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="selectFirst50">בחר את ה50 הראשונים</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="selectAll">בחר את כולם</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="clearBots">מחק בוטים</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="clearAdmins">מחק אדמינים</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="clearErrors">מחק שגיאות</button></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><button id="clearOk">מחק OK</button></a>
+    </li>
+  </ul>
+  <ul class="nav ml-5 justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><input type="checkbox" id="recentlyFilter">נראה לאחרונה</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#content"><input type="checkbox" id="onlineFilter">מחובר</a>
+    </li>
+  </ul>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="addInstance" tabindex="-1" role="dialog" aria-labelledby="addInstanceLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+        <div class="modal-body">
+          <input class="form-control" placeholder="מספר טלפון עם+קוד מדינה" type="text" id="newNumber">
+          <input class="form-control" placeholder="קוד" type="text" id="newCode" readonly>
+          <input class="form-control" placeholder="סיסמא דו שלבי" type="password" id="newPassword" readonly>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">סגור</button>
+          <button type="button" class="btn btn-primary" id="addNewNumber">הוסף</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <div id="loginForm">
+      <input class="form-control" placeholder="מספר טלפון עם+קוד מדינה" type="text" id="mainNumber">
+      <input class="form-control" placeholder="קוד" type="text" id="mainCode" readonly>
+      <input class="form-control" placeholder="סיסמא דו שלבי" type="password" id="mainPassword" readonly>
+      <button type="button" class="btn btn-primary" id="mainLoginButton">Login</button>
+    </div>
+  </div>
+
+  <div class="collapse d-flex justify-content-center" id="instanceList">
+    
+  </div>
+  
+  <div id='messagesControl'></div>
+  <div id="status">
+
+  </div>
+  <div id='content'>
+    
+    <ul id='chats'></ul>
+    <div id='members'>
+
+    </div>
+    <div id='inviteTo'></div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="app.debug.js"></script></body>
+
+</html>
